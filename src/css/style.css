@@ -1,0 +1,394 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #fce7f3 0%, #e0f2fe 100%);
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    
+    --primary: #3b82f6;
+    --primary-gradient: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    --secondary: #6366f1;
+    --accent: #f43f5e;
+    
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    
+    --font-main: 'Inter', 'Noto Sans JP', sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    background-attachment: fixed;
+    color: var(--text-main);
+    font-family: var(--font-main);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center; /* Centered layout for better focus */
+    overflow-x: hidden;
+    line-height: 1.5;
+}
+
+/* Glassmorphism Classes */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+.app-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    padding: 1.5rem;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+/* --- Sidebar (Sticky) --- */
+.results-sidebar {
+    position: sticky;
+    top: 1.5rem;
+    width: 250px; /* Wider for better readability */
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    z-index: 10;
+    transition: all 0.3s ease;
+    
+    /* Glass Effect */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.sidebar-header h2 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.btn-copy {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.2rem;
+    border-radius: 50%;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.btn-copy:hover {
+    background: rgba(0,0,0,0.05);
+    transform: scale(1.1);
+}
+
+/* Large Result Box */
+.sidebar-result {
+    background: rgba(255,255,255,0.5);
+    border-radius: var(--radius-md);
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.sidebar-result:hover {
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.8);
+}
+
+.sidebar-result h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin: 0 0 0.25rem 0;
+}
+
+.result-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+/* Total Box Highlight */
+.sidebar-result.total-box {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 10px 20px -5px rgba(37, 99, 235, 0.4);
+    margin-top: 1rem;
+    border: none;
+}
+
+.sidebar-result.total-box h3,
+.sidebar-result.total-box .subtitle,
+.sidebar-result.total-box .result-value {
+    color: white;
+    opacity: 1;
+}
+
+.sidebar-result.total-box .subtitle {
+    opacity: 0.8;
+}
+
+/* VS Opponent Box */
+#battleResultBox {
+    background: #f8fafc;
+    border: 2px dashed #cbd5e1;
+    border-radius: var(--radius-md);
+}
+
+/* --- Main Content --- */
+.content-wrapper {
+    flex: 1;
+    min-width: 0;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    background: linear-gradient(135deg, #2563eb 0%, #db2777 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
+}
+
+/* Cards (Sections) */
+.card, .mode-container {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.5);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+    color: var(--text-main);
+}
+
+/* --- Inputs & Controls --- */
+.input-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+}
+
+input[type="number"], select {
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid #cbd5e1;
+    border-radius: var(--radius-sm);
+    font-size: 1rem;
+    background: rgba(255,255,255,0.9);
+    transition: all 0.2s;
+    box-sizing: border-box;
+}
+
+input[type="number"]:focus, select:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+/* Segmented Controls (The fancy buttons) */
+.segmented-control {
+    display: flex;
+    flex-wrap: wrap;
+    background: #f1f5f9;
+    padding: 0.25rem;
+    border-radius: var(--radius-sm);
+    gap: 0.25rem;
+}
+
+.segment-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 0.5rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.segment-btn:hover {
+    background: rgba(255,255,255,0.5);
+    color: var(--text-main);
+}
+
+.segment-btn.active {
+    background: white;
+    color: var(--primary);
+    font-weight: 700;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Specific Role Chips */
+.role-label {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+}
+.role-label.fw { background: #fee2e2; color: #ef4444; }
+.role-label.mf { background: #dcfce7; color: #22c55e; }
+.role-label.df { background: #dbeafe; color: #3b82f6; }
+.role-label.gk { background: #fef9c3; color: #eab308; }
+
+
+/* Slot Tabs (1-6) */
+.mode-tabs {
+    background: rgba(255,255,255,0.8);
+    backdrop-filter: blur(8px);
+    padding: 0.3rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 0.3rem;
+    box-shadow: var(--glass-shadow);
+}
+
+.tab-btn {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 0.6rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tab-btn:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+.tab-btn.active {
+    background: var(--primary-gradient);
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.3);
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .app-container {
+        flex-direction: column;
+        padding: 0.5rem;
+        gap: 1rem;
+    }
+    
+    .results-sidebar {
+        /* Bottom Sheet Style or Top Summary */
+        order: -1; /* Show on top */
+        width: 100%;
+        position: relative;
+        top: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr; /* 2 Column Grid */
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+    
+    .sidebar-header {
+        grid-column: 1 / -1;
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+    
+    .sidebar-result.calc-stats, 
+    .sidebar-result.tech-power {
+        display: none; /* Hide detailed stats on mobile to save space? Or keep them? */
+    }
+    
+    /* Keep Total and Character Power visible */
+    .sidebar-result {
+        margin-bottom: 0;
+    }
+    
+    .content-wrapper {
+        width: 100%;
+    }
+    
+    .stat-row {
+        flex-direction: column;
+    }
+    
+    /* Segmented controls wrap nicely already */
+    .segment-btn {
+        padding: 0.6rem 0.4rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeIn 0.4s ease-out;
+}
+
+/* Utilities */
+.hidden { display: none !important; }
+
+/* Toast */
+#toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
+    z-index: 9999;
+}
+#toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    visibility: visible;
+}

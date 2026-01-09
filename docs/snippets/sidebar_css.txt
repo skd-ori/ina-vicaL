@@ -1,0 +1,103 @@
+/* Sidebar CSS additions */
+.main-layout {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.results-sidebar {
+    position: sticky;
+    top: 2rem;
+    width: 280px;
+    flex-shrink: 0;
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    color: white;
+    order: 2;
+}
+
+.results-sidebar h2 {
+    margin: 0 0 1.5rem 0;
+    font-size: 1.3rem;
+    text-align: center;
+    opacity: 0.95;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 0.75rem;
+}
+
+.sidebar-result {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar-result:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar-result h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.4;
+}
+
+.sidebar-result .subtitle {
+    font-size: 0.8rem;
+    opacity: 0.85;
+}
+
+.sidebar-result .result-value {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+    color: white;
+}
+
+.sidebar-result.tech-power {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-result.tech-power .result-value {
+    font-size: 2rem;
+}
+
+@media (max-width: 1024px) {
+    .main-layout {
+        flex-direction: column;
+    }
+    
+    .results-sidebar {
+        position: static;
+        width: 100%;
+        order: -1;
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .results-sidebar h2 {
+        width: 100%;
+    }
+    
+    .sidebar-result {
+        flex: 1;
+        min-width: 180px;
+    }
+}

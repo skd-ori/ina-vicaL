@@ -1,0 +1,30 @@
+name: Build Single File HTML
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    paths:
+      - 'src/**'
+      - 'tools/**'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Build Single HTML
+      shell: pwsh
+      run: |
+        ./tools/build.ps1
+
+    - name: Commit and Push changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "chore: auto-build ina-vicaL_single.html"
+        file_pattern: 'ina-vicaL_single.html'

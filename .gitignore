@@ -1,0 +1,20 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+
+# Dependencies (if we add npm later)
+node_modules/
+
+# Build artifacts
+# explicit allow for single file as it is the distribution target
+!ina-vicaL_single.html
